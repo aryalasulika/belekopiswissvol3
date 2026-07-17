@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bele Kopi Swiss S3 - Cyberpunk MLBB Tournament</title>
+    <title>Bele Kopi Swiss</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
@@ -104,7 +104,7 @@
         </div>
     </header>
 
-    <section id="hero" class="relative flex flex-col items-center justify-center text-center py-24 px-4 overflow-hidden">
+    <!-- <section id="hero" class="relative flex flex-col items-center justify-center text-center py-24 px-4 overflow-hidden">
         <div class="absolute inset-0 bg-radial-at-c from-purple-950/20 via-transparent to-transparent pointer-events-none"></div>
         
         <p class="font-orbitron text-cyan-400 tracking-[0.3em] text-sm md:text-lg mb-3 uppercase">Mobile Legends Tournament</p>
@@ -117,7 +117,7 @@
             Masuki arena distopia masa depan. Buktikan tim milikmu adalah yang terkuat di jagat Cyber Bele Kopi Swiss Season 3!
         </p>
 
-        <!-- <div class="grid grid-cols-4 gap-2 md:gap-4 max-w-lg mx-auto mb-12">
+        <div class="grid grid-cols-4 gap-2 md:gap-4 max-w-lg mx-auto mb-12">
             <div class="neon-border-cyan bg-black/60 p-4 rounded-lg w-20 md:w-24 cyber-clip">
                 <span id="days" class="block font-orbitron text-2xl md:text-4xl font-bold text-cyan-400">00</span>
                 <span class="text-xs text-gray-500 uppercase">Hari</span>
@@ -138,7 +138,49 @@
 
         <a href="#register" class="px-10 py-4 font-orbitron text-lg font-bold text-white bg-pink-600 hover:bg-pink-700 hover:shadow-[0_0_25px_#ff0055] transition-all duration-300 cyber-clip neon-border-pink">
             REGISTRASI SEKARANG
-        </a> -->
+        </a>
+    </section> -->
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative flex flex-col items-center justify-center text-center py-24 px-4 overflow-hidden">
+        <div class="absolute inset-0 bg-radial-at-c from-purple-950/20 via-transparent to-transparent pointer-events-none"></div>
+        
+        <p class="font-orbitron text-cyan-400 tracking-[0.3em] text-sm md:text-lg mb-3 uppercase animate-pulse">● TOURNAMENT IN PROGRESS</p>
+        
+        <h1 class="font-orbitron text-5xl md:text-8xl font-black tracking-tighter text-white mb-6 glitch" data-text="BELE KOPI SWISS S3">
+            BELE KOPI SWISS S3
+        </h1>
+        
+        <!-- Kalimat Motivasi Baru -->
+        <p class="text-gray-200 max-w-2xl text-md md:text-xl mb-10 tracking-wide font-medium font-orbitron uppercase text-shadow-sm">
+            "Panggung juara telah dibuka. Tak ada tempat untuk ragu, buktikan kerja keras timmu, hancurkan batasanmu, dan rebut takhta tertinggi di Bele Kopi Swiss!"
+        </p>
+
+   <!-- Live Real-Time Clock -->
+   <div class="mb-4 text-xs font-orbitron tracking-widest text-pink-500 uppercase">WAKTU REAL-TIME VENUE</div>
+        <div class="grid grid-cols-4 gap-2 md:gap-4 max-w-lg mx-auto mb-12">
+            <div class="neon-border-pink bg-black/60 p-4 rounded-lg w-20 md:w-24 cyber-clip">
+                <span id="live-hours" class="block font-orbitron text-2xl md:text-4xl font-bold text-pink-500">00</span>
+                <span class="text-xs text-gray-500 uppercase">Jam</span>
+            </div>
+            <div class="neon-border-pink bg-black/60 p-4 rounded-lg w-20 md:w-24 cyber-clip">
+                <span id="live-minutes" class="block font-orbitron text-2xl md:text-4xl font-bold text-pink-500">00</span>
+                <span class="text-xs text-gray-500 uppercase">Menit</span>
+            </div>
+            <div class="neon-border-pink bg-black/60 p-4 rounded-lg w-20 md:w-24 cyber-clip">
+                <span id="live-seconds" class="block font-orbitron text-2xl md:text-4xl font-bold text-pink-500">00</span>
+                <span class="text-xs text-gray-500 uppercase">Detik</span>
+            </div>
+            <div class="neon-border-pink bg-black/60 p-4 rounded-lg w-20 md:w-24 cyber-clip flex flex-col justify-center items-center">
+                <span id="live-ampm" class="block font-orbitron text-xl md:text-2xl font-black text-cyan-400">--</span>
+                <span class="text-xs text-gray-500 uppercase mt-1">Format</span>
+            </div>
+        </div>
+
+        <!-- Mengubah Tombol Daftar Menjadi Lihat Live Bracket -->
+        <a href="#bracket" class="px-10 py-4 font-orbitron text-lg font-bold text-white bg-cyan-600 hover:bg-cyan-700 hover:shadow-[0_0_25px_#00f0ff] transition-all duration-300 cyber-clip neon-border-cyan">
+            LIHAT LIVE BRACKET
+        </a>
     </section>
 
     <section id="info" class="max-w-7xl mx-auto px-4 py-16 w-full">
@@ -206,34 +248,37 @@
         </div>
     </footer>
 
-    <script>
-        // Atur Tanggal Turnamen (Silakan ganti tanggal target di bawah ini)
-        const countdownDate = new Date("Aug 15, 2026 10:00:00").getTime();
+<!-- JavaScript Live Real-Time Clock -->
+<script>
+        function updateLiveClock() {
+            const now = new Date();
+            
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
 
-        const updateTimer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
+            // Mengubah format ke 12 jam (Opsional, jika ingin format 24 jam hapus 2 baris di bawah ini)
+            hours = hours % 12;
+            hours = hours ? hours : 12; // Angka '0' diubah menjadi '12'
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // Menambahkan angka 0 di depan jika angka satuan (misal: 09:05:01)
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
 
-            // Tampilkan hasil di elemen HTML
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            // Masukkan data ke elemen HTML
+            document.getElementById('live-hours').innerText = hours;
+            document.getElementById('live-minutes').innerText = minutes;
+            document.getElementById('live-seconds').innerText = seconds;
+            document.getElementById('live-ampm').innerText = ampm;
+        }
 
-            // Jika hitung mundur selesai
-            if (distance < 0) {
-                clearInterval(updateTimer);
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-            }
-        }, 1000);
+        // Jalankan fungsi setiap 1 detik (1000 milidetik)
+        setInterval(updateLiveClock, 1000);
+
+        // Jalankan fungsi langsung saat halaman pertama kali dimuat tanpa menunggu 1 detik pertama
+        updateLiveClock();
     </script>
 </body>
 </html>
