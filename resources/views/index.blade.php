@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bele Kopi Swiss</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
@@ -210,6 +211,45 @@
                 <p class="font-orbitron text-lg font-bold text-cyan-400">VENUE: BELE KOPI SWISS</p>
                 <p class="text-xs text-gray-500">(Grand Final diselenggarakan Offline)</p>
             </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Match Schedule Section -->
+    <section id="schedule" class="max-w-7xl mx-auto px-4 py-16 w-full border-t border-purple-950">
+        <h2 class="font-orbitron text-3xl font-black text-center mb-12 tracking-widest text-white">
+            MATCH <span class="text-yellow-400">SCHEDULES</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @forelse($schedules as $match)
+                <!-- Card Jadwal Bergaya Cyberpunk -->
+                <div class="neon-border-cyan bg-black/80 p-5 rounded-lg cyber-clip flex flex-col justify-between items-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 px-3 py-1 text-xs font-orbitron font-bold rounded-bl
+                        {{ $match->status == 'LIVE' ? 'bg-red-600 text-white animate-pulse' : ($match->status == 'FINISHED' ? 'bg-gray-700 text-gray-400' : 'bg-cyan-500 text-black') }}">
+                        {{ $match->status }}
+                    </div>
+
+                    <div class="text-xs font-orbitron text-gray-500 tracking-wider mb-2">{{ strtoupper($match->round) }}</div>
+                    
+                    <!-- Area Tanding Team A vs Team B -->
+                    <div class="flex items-center justify-center space-x-4 w-full my-2">
+                        <div class="font-orbitron text-md md:text-xl font-bold text-white text-right w-5/12 truncate">{{ $match->team_a }}</div>
+                        <div class="font-orbitron text-xs font-black text-yellow-400 bg-yellow-950/40 px-2 py-1 border border-yellow-600/30 rounded">VS</div>
+                        <div class="font-orbitron text-md md:text-xl font-bold text-white text-left w-5/12 truncate">{{ $match->team_b }}</div>
+                    </div>
+
+                    <!-- Jam Pertandingan -->
+                    <div class="mt-3 flex items-center space-x-2 text-sm font-orbitron text-cyan-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>{{ \Carbon\Carbon::parse($match->match_time)->locale('id')->translatedFormat('l, d F Y • H:i') }} WITA</span>
+                    </div>
+                </div>
+            @empty
+                <!-- Tampilan jika data kosong -->
+                <div class="col-span-1 md:col-span-2 text-center py-8 font-orbitron text-gray-500">
+                    TIDAK ADA JADWAL PERTANDINGAN AKTIF SAAT INI.
+                </div>
+            @endforelse
         </div>
     </section>
 
